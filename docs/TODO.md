@@ -1,4 +1,4 @@
-# IoP Profile Server - TODOs and Possible Improvements
+ in# IoP Profile Server - TODOs and Possible Improvements
 
 
 
@@ -10,15 +10,15 @@ Some of the following features are going to be implemented, others will be consi
 
 The network simulator is a tool that allows developers to run multiple instances of the profile server on a single machine and create a testing network, 
 in which various scenarios can be played. Currently, the network simulator implements a dummy LOC server, which simulates a basic functionality of a LOC server.
-We need to improve the network simulator to support real LOC software, to help us testing LOC functionality within the simulator as well as the integration 
+We need to improve the network simulator to support real LOC software, to help us in testing LOC functionality within the simulator as well as the integration 
 between the profile server and the LOC server.
 
 
 ### Multimachine Network Simulator Support
 
 Currently, the network simulator can only run on a single machine, which limits the size of the simulated network because of the simulator's demands on hardware resources.
-It may be possible to extend the functionality of the network simulator to support execution on multiple machines, which would allow is to simulate large 
-network environments on just couple of testing servers.
+It may be possible to extend the functionality of the network simulator to support execution on multiple machines, which would allow us to simulate large 
+network environments on just a couple of testing servers.
 
 
 ### Profile Changes Notification
@@ -50,13 +50,13 @@ In case of permanent unavailability of the primary server, the client is expecte
 
 ### Admin Interface
 
-A special interface for the administrator of the profile server should be implemented to allow easier management and change of settings of the profile 
+A special interface for the administrator of the profile server should be implemented to allow easier management and changing of settings on the profile 
 server without a need to restart it, as well as to provide various statistics about the profile server's operations and performance.
 
 
 ### Regression Test Mode
 
-Once the admin interface is ready, we can implement a regression test mode that will allow developers to create new kinds of tests of the profile server.
+Once the admin interface is ready, we can implement a regression test mode that will allow developers to create new kinds of tests on the profile server.
 
 
 
@@ -74,15 +74,15 @@ Currently, there is no verification whether an incoming profile server that requ
 Mitigation of this problem depends on design decisions to be made about the final definition of the server neighborhood.
 
 Regardless of the neighborhood design and definitions, there is also the possibility of spawning a large number of servers within a certain location.
-Mitigation of this should probably be done on LOC level with IP subnet based limitation.
+Mitigation of this should probably be done on the LOC level with IP subnet based limitation.
 
-Also currently, there is no limit on a number of attempts for the Neighborhood Initialization Process if it fails. This allows the attacker to 
+Currently, there is no limit on the number of attempts for the Neighborhood Initialization Process if it fails. This allows the attacker to 
 perform a DoS attack. To mitigate this issue, we can introduce IP based limits.
 
 
 ### DoS Attack Using Search Queries, Profile Updates, and Other Requests
 
-Currently, there is no limit on a number of search queries that a single identity can send to the profile server. Sending a search query is a cheap 
+Currently, there is no limit on the number of search queries that a single identity can send to the profile server. Sending a search query is a cheap 
 operation for the client compared to the amount of work that the server is potentially doing.
 
 Similarly, there are currently no limits on other requests such as profile updates.
@@ -103,7 +103,7 @@ To mitigate this issue, we would need to introduce IP based limits on hosting re
 
 ### Updates Between Neighbors
 
-Neighbor servers share their profile databases and keep their information synchronized. The initial database upload to a neighbor is efficient, 
+Neighbor servers share their profile databases and keep their information synchronized. The initial database uploaded to a neighbor is efficient, 
 but individual updates that follow are somehow inefficient as we currently use a new TCP TLS connection to the target neighbor, verify our identity 
 and send a single update of a single profile even if there are more updates to be done. 
 

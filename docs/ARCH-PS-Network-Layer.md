@@ -25,7 +25,7 @@ it points to this interface. It is an unencrypted interface on which other peers
  * Customer Clients Interface is an encrypted interface for client applications that represent identities hosted by this profile server.
  * Application Service Interface is an encrypted interface that is closely related to [Relay Connection](#relay-connection) and [Application Services](#application-services) modules. 
 It is used when an online hosted identity is called through its application service by another identity that may or may not be hosted by the same profile server.
-This interface then acts as a bridge between the two clients and the profile server only forwards the messages between them.
+This interface then acts as a bridge between the two clients and the profile server only forwarding the messages between them.
 
 The profile server's administrator can configure each role to run on a separate TCP port, or to use a single port for multiple roles. 
 Two roles can be served over a single TCP port if the communication on them is either encrypted on both of them or unencrypted on both of them. 
@@ -35,7 +35,7 @@ An encrypted interface cannot be combined with an unencrypted one on the same po
 ### Incoming Client
 
 Incoming client represents an incoming TCP connection that is accepted by one of the TCP role servers, and it holds the context information for the session. 
-A connection can be made by an end user application, or by another profile server, or any other software that wants to communicate via Profile Server 
+A connection can be made by an end user application, by another profile server, or any other software that wants to communicate via Profile Server 
 Network Protocol with the profile server.
 
 A session can be anonymous or authenticated, in which case the connection represents a single cryptographic identity. The session context 
@@ -50,7 +50,7 @@ may contain any of the following information:
 
 
 
-### Message Processor
+t### Message Processor
 
 Message processor is the module that is responsible for validation and processing of all Profile Server Network protocol messages that are received by incoming clients.
 Most of the messages are fully processed here except for some more complicated cases, such as application service messages relayed over the Application Service Interface.
@@ -108,24 +108,24 @@ other profile servers that live in the neighborhood of the profile server.
 
 ### Content Address Network Component
 
-CAN network can be used to store data that can later be found by their identifiers. In the IoP network, client applications do not have writing access to CAN network 
-and have to ask their profile servers to save data on their behalf. 
+CAN network can be used to store data that can later be found by their identifiers. In the IoP network, client applications do not have writing access to the CAN network and
+have to ask their profile servers to save data on their behalf. 
 
 As the identifiers of the stored data are calculated from the binary forms of the stored data, it would not be possible to find data that belong to a certain identity 
 without knowing the identifier or the data. To solve this problem there is a system of so called IPNS records, that allows finding stored data that belong 
 to a certain user, just by knowing the identity of the user (its network identifier).
 
-Profile server uses the IPNS system to store its contact information to the CAN network. This allows users of IoP network to find the contact information to 
-a profile server just by knowing its network identifier. When a contact information of a profile server changes (e.g. its primary port is changed by its administrator) 
+Profile server uses the IPNS system to store its contact information to the CAN network. This allows users of IoP network to find the contact information of 
+a profile server just by knowing its network identifier. When contact information of a profile server changes (e.g. its primary port is changed by its administrator) 
 the profile server updates its IPNS record.
 
-Similarly to this mechanism, the profile server submits IPNS records of its hosted identities that want to store their data to CAN network. Any other user of 
-the network can then find these data provided that they know the network identifiers of the data owners. And again, if the user changes its data in CAN, the profile 
+Similarly to this mechanism, the profile server submits IPNS records of its hosted identities that want to store their data to the CAN network. Any other user of 
+the network can find the data provided that they know the network identifiers of the data owners. Once again, if the user changes its data in the CAN network, the profile 
 server updates its IPNS record.
 
-IPNS records in CAN network expire in time and it is necessary for each IPNS record to be refreshed once in a while. It is the responsibility of this component 
-to refresh the IPNS record of the profile server when it is needed. Refreshing IPNS records of hosted identities has to be initiated by themselves. The clients 
-have to contact their profile servers and ask them to refresh their IPNS records before they expire in CAN network.
+IPNS records in the CAN network expire in time and it is necessary for each IPNS record to be refreshed once in a while. It is the responsibility of this component 
+to refresh the IPNS record of the profile server when it is needed. Refreshing IPNS records of hosted identities has to be initiated by themselves. The client application 
+have to contact their profile servers and ask them to refresh their IPNS records before they expire in the CAN network.
 
 
 
